@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-"""Tests for `{{ cookiecutter.project_slug }}` package."""
+"""Tests for `{{ cookiecutter.plugin_slug }}` package."""
 
 {% if cookiecutter.use_pytest == 'y' -%}
 import pytest
@@ -8,7 +8,7 @@ import pytest
 import unittest
 {%- endif %}
 
-from {{ cookiecutter.project_slug }} import {{ cookiecutter.project_slug }}
+from {{ cookiecutter.plugin_slug }} import {{ cookiecutter.plugin_slug }}
 {%- if cookiecutter.use_pytest == 'y' %}
 
 
@@ -29,8 +29,8 @@ def test_content(response):
 {%- else %}
 
 
-class Test{{ cookiecutter.project_slug|title }}(unittest.TestCase):
-    """Tests for `{{ cookiecutter.project_slug }}` package."""
+class Test{{ cookiecutter.plugin_slug|title }}(unittest.TestCase):
+    """Tests for `{{ cookiecutter.plugin_slug }}` package."""
 
     def setUp(self):
         """Set up test fixtures, if any."""

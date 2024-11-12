@@ -3,9 +3,9 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "{{cookiecutter.project_slug}}"
+name = "{{cookiecutter.plugin_slug}}"
 version = "{{cookiecutter.version}}"
-description = "{{cookiecutter.project_short_description}}"
+description = "{{cookiecutter.plugin_short_description}}"
 readme = "README.rst"
 authors = [
   {name = "{{cookiecutter.full_name}}", email = "{{cookiecutter.email}}"}

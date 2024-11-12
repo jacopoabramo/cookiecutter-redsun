@@ -5,7 +5,6 @@ import sys
 import subprocess
 import yaml
 import datetime
-import pytest
 from cookiecutter.utils import rmtree
 
 from click.testing import CliRunner
@@ -65,14 +64,14 @@ def test_year_compute_in_license_file(cookies):
 
 
 def project_info(result):
-    """Get toplevel dir, project_slug, and project dir from baked cookies"""
+    """Get toplevel dir, plugin_slug, and project dir from baked cookies"""
     assert result.exception is None
     assert result.project.isdir()
 
     project_path = str(result.project)
-    project_slug = os.path.split(project_path)[-1]
-    project_dir = os.path.join(project_path, project_slug)
-    return project_path, project_slug, project_dir
+    plugin_slug = os.path.split(project_path)[-1]
+    project_dir = os.path.join(project_path, plugin_slug)
+    return project_path, plugin_slug, project_dir
 
 
 def test_bake_with_defaults(cookies):
@@ -240,7 +239,7 @@ def test_not_using_pytest(cookies):
 
 # def test_project_with_hyphen_in_module_name(cookies):
 #     result = cookies.bake(
-#         extra_context={'project_name': 'something-with-a-dash'}
+#         extra_context={'plugin_name': 'something-with-a-dash'}
 #     )
 #     assert result.project is not None
 #     project_path = str(result.project)
@@ -262,7 +261,7 @@ def test_not_using_pytest(cookies):
 def test_bake_with_no_console_script(cookies):
     context = {'command_line_interface': "No command-line interface"}
     result = cookies.bake(extra_context=context)
-    project_path, project_slug, project_dir = project_info(result)
+    project_path, plugin_slug, project_dir = project_info(result)
     found_project_files = os.listdir(project_dir)
     assert "cli.py" not in found_project_files
 
@@ -274,7 +273,7 @@ def test_bake_with_no_console_script(cookies):
 def test_bake_with_console_script_files(cookies):
     context = {'command_line_interface': 'Click'}
     result = cookies.bake(extra_context=context)
-    project_path, project_slug, project_dir = project_info(result)
+    project_path, plugin_slug, project_dir = project_info(result)
     found_project_files = os.listdir(project_dir)
     assert "cli.py" in found_project_files
 
@@ -286,9 +285,9 @@ def test_bake_with_console_script_files(cookies):
 def test_bake_with_console_script_cli(cookies):
     context = {'command_line_interface': 'Click'}
     result = cookies.bake(extra_context=context)
-    project_path, project_slug, project_dir = project_info(result)
+    project_path, plugin_slug, project_dir = project_info(result)
     module_path = os.path.join(project_dir, 'cli.py')
-    module_name = '.'.join([project_slug, 'cli'])
+    module_name = '.'.join([plugin_slug, 'cli'])
     spec = importlib.util.spec_from_file_location(module_name, module_path)
     cli = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(cli)
@@ -297,7 +296,7 @@ def test_bake_with_console_script_cli(cookies):
     assert noarg_result.exit_code == 0
     noarg_output = ' '.join([
         'Replace this message by putting your code into',
-        project_slug])
+        plugin_slug])
     assert noarg_output in noarg_result.output
     help_result = runner.invoke(cli.main, ['--help'])
     assert help_result.exit_code == 0

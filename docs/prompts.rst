@@ -17,13 +17,13 @@ email
 github_username
     Your GitHub username.
 
-project_name
+plugin_name
     The name of your new Python package project. This is used in documentation, so spaces and any characters are fine here.
     
-project_slug
-    The namespace of your Python package. This should be Python import-friendly. Typically, it is the slugified version of project_name. Note: your PyPi project and Travis links will use project_slug, so change those in the README afterwards.
+plugin_slug
+    The namespace of your Python package. This should be Python import-friendly. Typically, it is the slugified version of plugin_name. Note: your PyPi project and Travis links will use plugin_slug, so change those in the README afterwards.
 
-project_short_description
+plugin_short_description
     A 1-sentence description of what your Python package does.
 
 pypi_username
@@ -47,7 +47,7 @@ add_pyup_badge
     Whether to include a `pyup <https://github.com/pyupio/pyup>`_ badge
 
 command_line_interface
-    Whether to create a console script using Click. Console script entry point will match the project_slug. Options: ['Click', 'Argparse', 'No command-line interface']
+    Whether to create a console script using Click. Console script entry point will match the plugin_slug. Options: ['Click', 'Argparse', 'No command-line interface']
     
 create_author_file
     Whether to create an authors file
