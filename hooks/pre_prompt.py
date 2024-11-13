@@ -2,13 +2,14 @@ import json
 import sys
 from pathlib import Path
 from cookiecutter.prompt import read_user_choice
+from typing import Any
 
 intro = """
 Welcome to the RedSun cookiecutter template.
 Follow the prompts to create a new plugin project.
 """
 
-def choose_type(data: dict[str, str]) -> dict[str, str]:
+def choose_type(data: dict[str, Any]) -> dict[str, Any]:
     """Select which type of plugin to create.
     
     Parameters
@@ -27,6 +28,13 @@ def choose_type(data: dict[str, str]) -> dict[str, str]:
     }
     type_choice : str = read_user_choice("plugin_type", options=["Model", "Controller"], prompts=prompts)
     data["_plugin_type"] = type_choice.lower()
+
+    if type_choice == "Model":
+        data["plugin_model_type"] = ["Detector", "Motor"]
+        data["__prompts__"]["plugin_model_type"] = "What type of model do you want to create?"
+    else:
+        data["plugin_controller_type"] = ["Computational", "Device"]
+        data["__prompts__"]["plugin_controller_type"] = "What type of controller do you want to create?"
     return data
 
 print(intro)
