@@ -41,6 +41,7 @@ def choose_type(data: dict[str, Any]) -> dict[str, Any]:
                 "plugin_mm_support" : "Is your device supported by Micro-Manager?"
             }
         mm_support: bool = read_user_yes_no("plugin_mm_support", default_value=False, prompts=prompts, prefix="[ExEngine] ")
+        data["_plugin_mm_support"] = mm_support
         # in exengine, there is a distinction between single-axis and double-axis motors;
         if model_type_choice == "Motor":
             data = choose_motor_type(data, mm_support)
