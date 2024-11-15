@@ -9,5 +9,5 @@ if TYPE_CHECKING:
 
 
 class MyDetector({{ cookiecutter._plugin_base }}):
-    def __init__(self, model_info: 'DetectorModelInfo'):
-        super().__init__(model_info)
+    def __init__(self, name: str, model_info: 'DetectorModelInfo') -> None:
+        super().__init__(name, model_info)

@@ -9,5 +9,5 @@ if TYPE_CHECKING:
 
 
 class MyMotor({{ cookiecutter._plugin_base }}):
-    def __init__(self, info: "MotorModelInfo"):
-        super().__init__(info)
+    def __init__(self, name: str, model_info: "MotorModelInfo") -> None:
+        super().__init__(name, model_info)
