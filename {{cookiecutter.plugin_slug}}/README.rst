@@ -15,12 +15,6 @@
         :alt: Documentation Status
 {%- endif %}
 
-{% if cookiecutter.add_pyup_badge == 'y' %}
-.. image:: https://pyup.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.plugin_slug }}/shield.svg
-     :target: https://pyup.io/repos/github/{{ cookiecutter.github_username }}/{{ cookiecutter.plugin_slug }}/
-     :alt: Updates
-{% endif %}
-
 
 {{ cookiecutter.plugin_short_description }}
 

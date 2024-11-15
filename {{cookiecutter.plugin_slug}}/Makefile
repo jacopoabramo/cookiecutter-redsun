@@ -54,25 +54,8 @@ lint/flake8: ## check style with flake8
 
 lint: lint/flake8 ## check style
 
-test: ## run tests quickly with the default Python
-{%- if cookiecutter.use_pytest == 'y' %}
-	pytest
-{%- else %}
-	python setup.py test
-{%- endif %}
-
 test-all: ## run tests on every Python version with tox
-	tox
-
-coverage: ## check code coverage quickly with the default Python
-{%- if cookiecutter.use_pytest == 'y' %}
-	coverage run --source {{ cookiecutter.plugin_slug }} -m pytest
-{%- else %}
-	coverage run --source {{ cookiecutter.plugin_slug }} setup.py test
-{%- endif %}
-	coverage report -m
-	coverage html
-	$(BROWSER) htmlcov/index.html
+	nox
 
 docs: ## generate Sphinx HTML documentation, including API docs
 	rm -f docs/{{ cookiecutter.plugin_slug }}.rst

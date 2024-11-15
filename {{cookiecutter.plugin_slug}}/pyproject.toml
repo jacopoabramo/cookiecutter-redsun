@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "{{cookiecutter.plugin_slug}}"
-version = "{{cookiecutter.version}}"
+version = "0.1.0"
 description = "{{cookiecutter.plugin_short_description}}"
 readme = "README.rst"
 authors = [
